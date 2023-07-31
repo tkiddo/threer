@@ -1,0 +1,27 @@
+{
+  "name": "threer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "vite"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkiddo/threer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tkiddo/threer/issues"
+  },
+  "homepage": "https://github.com/tkiddo/threer#readme",
+  "devDependencies": {
+    "vite": "^4.4.7"
+  },
+  "dependencies": {
+    "dat.gui": "^0.7.9",
+    "three": "^0.155.0"
+  }
+}
