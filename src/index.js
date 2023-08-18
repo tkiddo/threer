@@ -1,16 +1,17 @@
 import * as THREE from 'three'
 import * as dat from 'dat.gui'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import { createScene } from './components/scene'
+import { createCamera } from './components/camera'
+import { createCube } from './components/cube'
+
+import { createRenderer } from './systems/renderer'
 
 const datGui = new dat.GUI()
 
-const scene = new THREE.Scene()
-scene.background = new THREE.Color(0xffffff)
+const scene = createScene()
 
-const renderer = new THREE.WebGLRenderer({ antialias: true })
-renderer.setSize(window.innerWidth, window.innerHeight)
-renderer.setPixelRatio(window.devicePixelRatio)
-document.body.appendChild(renderer.domElement)
+const renderer = createRenderer()
 
 window.addEventListener('resize', () => {
   renderer.setSize(window.innerWidth, window.innerHeight)
@@ -18,14 +19,7 @@ window.addEventListener('resize', () => {
   camera.updateProjectionMatrix()
 })
 
-const geometry = new THREE.BoxGeometry(10, 10, 10)
-const material = new THREE.MeshLambertMaterial({
-  color: 0x00ffff,
-  opacity: 0.5,
-  transparent: true,
-})
-const cube = new THREE.Mesh(geometry, material)
-cube.position.set(0, 0, 0)
+const cube = createCube()
 scene.add(cube)
 
 // cube位置
@@ -44,14 +38,7 @@ cubeColor.addColor({ color: '#00ffff' }, 'color').onChange((e) => {
   cube.material.color.set(e)
 })
 
-const camera = new THREE.PerspectiveCamera(
-  30,
-  window.innerWidth / window.innerHeight,
-  1,
-  3000
-)
-camera.position.set(100, 100, 100)
-camera.lookAt(0, 0, 0)
+const camera = createCamera()
 
 //camera位置
 const cameraPosition = datGui.addFolder('cameraPosition')
