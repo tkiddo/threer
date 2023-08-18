@@ -3,10 +3,12 @@ import { createCamera } from './components/camera'
 import { createCube } from './components/cube'
 import { createLight } from './components/light'
 
-import { createRenderer } from './systems/renderer'
-import { Resizer } from './systems/resizer'
+import { createAxesHelper } from './helper/axes'
 
-let camera, scene, renderer, lighter, resizer
+import { createRenderer } from './systems/renderer'
+import { Resizer } from './systems/Resizer'
+
+let camera, scene, renderer, lighter, resizer, axesHelper
 class World {
   constructor(container) {
     this.init(container)
@@ -21,6 +23,8 @@ class World {
     const cube = createCube()
     scene.add(cube)
     resizer = new Resizer(container, camera, renderer)
+    axesHelper = createAxesHelper()
+    scene.add(axesHelper)
   }
   render() {
     renderer.render(scene, camera)
